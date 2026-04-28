@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <ul>
+        {% for session in sessions %}
+            <li>
+                <a href="{% url 'cinema:session_detail' session.id %}">
+                    {{ session.name }} - {{ session.price }} UAH
+                </a>
+                (Hall: {{ session.hall.name }})
+            </li>
+        {% empty %}
+            <li>No sessions available at the moment.</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{% url 'cinema:cinema_list' %}">Back to Cinemas</a>
+</body>
+</html>

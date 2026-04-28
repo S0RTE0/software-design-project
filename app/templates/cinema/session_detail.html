@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Movie: {{ session.name }}</h1>
+    
+    <p><strong>Price:</strong> {{ session.price }} UAH</p>
+    <p><strong>Hall:</strong> {{ session.hall.name }}</p>
+    <p><strong>Cinema:</strong> {{ session.hall.cinema.name }}</p>
+
+    <hr>
+    <h3>Select a Seat:</h3>
+    <p>Matrix will be here...</p>
+
+    <br>
+    <a href="{% url 'cinema:session_list' %}">Back to Schedule</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <ul>
+        {% for cinema in cinemas %}
+            <li>
+                <a href="{% url 'cinema:cinema_detail' cinema.id %}">{{ cinema.name }}</a>
+            </li>
+        {% empty %}
+            <li>No cinemas found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ cinema.name }}</h1>
+    
+    <p><strong>Description:</strong> {{ cinema.description }}</p>
+
+    <hr>
+    <h3>Available Sessions:</h3>
+    <p>Work in progress...</p>
+
+    <br>
+    <a href="{% url 'cinema:cinema_list' %}">Back to all cinemas</a>
+</body>
+</html>
