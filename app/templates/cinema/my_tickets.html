@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <nav style="background: #f4f4f4; padding: 10px; margin-bottom: 20px; border-bottom: 1px solid #ccc;">
+        <a href="{% url 'cinema:cinema_list' %}" style="margin-right: 15px;">Home</a>
+        {% if user.is_authenticated %}
+            <span>Welcome, <strong>{{ user.username }}</strong>!</span>
+            <form action="{% url 'accounts:logout' %}" method="post" style="display: inline; margin-left: 10px;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% endif %}
+    </nav>
+
+    <h1>{{ title }}</h1>
+
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        {% for ticket in tickets %}
+            <div style="border: 2px dashed #333; padding: 15px; border-radius: 8px; max-width: 400px; background: #fafafa;">
+                <h2 style="margin-top: 0; color: #d9534f;">{{ ticket.session.name }}</h2>
+                <p><strong>Cinema:</strong> {{ ticket.session.cinema.name }}</p>
+                <p><strong>Time:</strong> {{ ticket.session.start_time|date:"d M Y, H:i" }}</p>
+                <p><strong>Seat Number:</strong> <span style="font-size: 1.2em; font-weight: bold;">{{ ticket.seat_number }}</span></p>
+                <p style="font-size: 0.8em; color: #666;">Purchased at: {{ ticket.purchased_at|date:"H:i (d M Y)" }}</p>
+                <p><em>Show this electronic ticket at the entrance.</em></p>
+            </div>
+        {% empty %}
+            <p>You haven't bought any tickets yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

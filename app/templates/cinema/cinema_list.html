@@ -8,6 +8,7 @@
     <nav style="background: #f4f4f4; padding: 10px; margin-bottom: 20px; border-bottom: 1px solid #ccc;">
         {% if user.is_authenticated %}
             <span>Welcome, <strong>{{ user.username }}</strong>!</span>
+			<a href="{% url 'cinema:my_tickets' %}" style="margin-left: 15px; font-weight: bold; color: #0056b3;">My Tickets</a>
             
             <form action="{% url 'accounts:logout' %}" method="post" style="display: inline; margin-left: 10px;">
                 {% csrf_token %}

@@ -7,15 +7,25 @@
 <body>
     <h1>Movie: {{ session.name }}</h1>
     
+    <p><strong>Start Time:</strong> {{ session.start_time|date:"d M Y, H:i" }}</p>
     <p><strong>Price:</strong> {{ session.price }} UAH</p>
-    <p><strong>Hall:</strong> {{ session.hall.name }}</p>
-    <p><strong>Cinema:</strong> {{ session.hall.cinema.name }}</p>
+    <p><strong>Hall:</strong> {% if session.hall %}{{ session.hall.name }}{% else %}Not assigned{% endif %}</p>
+    <p><strong>Cinema:</strong> {{ session.cinema.name }}</p>
 
     <hr>
-    <h3>Select a Seat:</h3>
-    <p>Matrix will be here...</p>
+    <h3>Buy a Ticket</h3>
+    {% if user.is_authenticated %}
+        <form action="{% url 'cinema:buy_ticket' session.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; border-radius: 5px;">
+                Buy Ticket ({{ session.price }} UAH)
+            </button>
+        </form>
+    {% else %}
+        <p>You must <a href="{% url 'accounts:login' %}">Login</a> to buy a ticket.</p>
+    {% endif %}
 
-    <br>
+    <br><br>
     <a href="{% url 'cinema:session_list' %}">Back to Schedule</a>
 </body>
 </html>

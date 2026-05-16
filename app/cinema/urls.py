@@ -11,4 +11,7 @@ urlpatterns = [
 
     path('sessions/', views.session_list_view, name='session_list'),
     path('sessions/<int:session_id>/', views.session_detail_view, name='session_detail'),
+    
+    path('sessions/<int:session_id>/buy/', views.buy_ticket_view, name='buy_ticket'),
+    path('my-tickets/', views.my_tickets_view, name='my_tickets'),
 ]

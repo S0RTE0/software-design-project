@@ -8,10 +8,23 @@
     <h1>{{ cinema.name }}</h1>
     
     <p><strong>Description:</strong> {{ cinema.description }}</p>
+    <p><strong>Location:</strong> {{ cinema.location }}</p>
+    <p><strong>Contacts:</strong> {{ cinema.contacts }}</p>
+    <p><strong>Working Hours:</strong> {{ cinema.working_hours }}</p>
 
     <hr>
-    <h3>Available Sessions:</h3>
-    <p>Work in progress...</p>
+    <h3>Today's Sessions:</h3>
+    <ul>
+        {% for session in sessions_today %}
+            <li>
+                <a href="{% url 'cinema:session_detail' session.id %}">
+                    {{ session.name }} ({{ session.start_time|time:"H:i" }}) - {{ session.price }} UAH
+                </a>
+            </li>
+        {% empty %}
+            <li>No sessions available today.</li>
+        {% endfor %}
+    </ul>
 
     <br>
     <a href="{% url 'cinema:cinema_list' %}">Back to all cinemas</a>
