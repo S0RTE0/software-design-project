@@ -1,0 +1,8 @@
+<body>
+    <h1>Are you sure you wanna quit??</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, leave</button>
+        <a href="{% url 'cinema:cinema_list' %}">Decline</a>
+    </form>
+</body>

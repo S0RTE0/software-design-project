@@ -5,6 +5,20 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    <nav style="background: #f4f4f4; padding: 10px; margin-bottom: 20px; border-bottom: 1px solid #ccc;">
+        {% if user.is_authenticated %}
+            <span>Welcome, <strong>{{ user.username }}</strong>!</span>
+            
+            <form action="{% url 'accounts:logout' %}" method="post" style="display: inline; margin-left: 10px;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'accounts:login' %}" style="margin-right: 10px;">Login</a>
+            <a href="{% url 'accounts:register' %}">Register</a>
+        {% endif %}
+    </nav>
+
     <h1>{{ title }}</h1>
 
     <ul>
